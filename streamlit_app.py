@@ -36,13 +36,13 @@ search_query = st.sidebar.text_input("Search for a term or phrase or ask a quest
 user_page_number = st.sidebar.number_input("Jump to page (type the page number)", min_value=1, value=1, step=1)
 
 if uploaded_file is not None:
-    pdfReader = PyPDF2.PdfFileReader(uploaded_file)
+    pdfReader = PyPDF2.PdfReader(uploaded_file)
     total_pages = len(pdfReader.pages)
 
     pdf_extracted_text = ""
     for page_index in range(total_pages):
         page = pdfReader.pages[page_index]
-        page_content = page.extractText()
+        page_content = page.extract_text()
         pdf_extracted_text += page_content
 
     st.sidebar.write(f"Total pages: {total_pages}")
